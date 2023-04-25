@@ -1,2 +1,2 @@
-# Fun-es---Desafios
+# Funcoes-Desafios
 Exercícios de funções com js.
