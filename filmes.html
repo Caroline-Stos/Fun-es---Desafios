@@ -9,10 +9,7 @@
 </head>
 
 <body>
-
     <h1>Filmes de Terror</h1>
-
-    <p>Filmes disponíveis</p>
 
     <ul>
         <li>Megan</li>
@@ -22,60 +19,52 @@
         <li>It, a coisa</li>
     </ul>
 
-    <label for="filme">Selecione o filme</label>
-    <select name="option" id="selecionarFilme">
-        <option value="Megan" onclick="selectFilme()">Megan</option>
-        <option value="Sorria" onclick="selectFilme()">Sorria</option>
-        <option value="O homem invisível" onclick="selectFilme()">O homem invisível</option>
-        <option value="Invocação do mal" onclick="selectFilme()">Invocação do mal</option>
-        <option value="It, a coisa" onclick="selectFilme()">It, a coisa</option>
-    </select>
+    <label for="filme">Selecione o filme:</label>
 
-    <label for="filme">De uma nota de 0 a 5</label>
-    <select name="option" id="selecionarNota">
-        <option value="0" onclick="selectNota()">0</option>
-        <option value="1" onclick="selectNota()">1</option>
-        <option value="2" onclick="selectNota()">2</option>
-        <option value="3" onclick="selectNota()">3</option>
-        <option value="4" onclick="selectNota()">4</option>
-        <option value="5" onclick="selectNota()">5</option>
-    </select>
+    <br>
+    <br>
 
-    <br><br>
+    <div id="selecionarFilme">
 
-    <table id="tabela-resultado">
+        <select name="options" id="filmes">
+            <option value="a">Megan</option>
+            <option value="b">Sorria</option>
+            <option value="c">O homem invisível</option>
+            <option value="d">Invocação do mal</option>
+            <option value="e">It</option>
+        </select>
 
-        <thead>
-            <tr>
-                <th>Filme</th>
-                <th>Nota</th>
-            </tr>
-        </thead>
+        <br>
+        <br>
 
-        <tbody></tbody>
+        <label>Dê uma nota:</label>
+        <select name="option" id="nota">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
 
-    </table>
+        <button id="darNota" onclick="avaliarFilme()">Enviar</button>
+
+    </div>
+
+    <p>Média de avaliações do filme:</p>
+    <div id="filmeEscolhido"></div>
+
+    <div id="media"></div>
 
     <script>
 
-        let filme = document.getElementById('selecionarFilme').value;
-        let nota = document.getElementById('selecionarNota').value;
+        let filmes = ["Megan", "Sorria", "O homem invisível", "Invocação do mal", "It"];
+        let notas = [];
 
-        
+        function avaliarFilme(filme, nota) {
+            
 
-
-
-        
-
-
-
-        
-
-
-
-
-
-
+        }
 
     </script>
 
