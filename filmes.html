@@ -26,19 +26,19 @@
 
     <div id="selecionarFilme">
 
-        <select name="options" id="filmes">
-            <option value="a">Megan</option>
-            <option value="b">Sorria</option>
-            <option value="c">O homem invisível</option>
-            <option value="d">Invocação do mal</option>
-            <option value="e">It</option>
+        <select name="options" id="option">
+            <option value="Megan">Megan</option>
+            <option value="Sorria">Sorria</option>
+            <option value="O homem invisível">O homem invisível</option>
+            <option value="Invocação do mal">Invocação do mal</option>
+            <option value="It">It</option>
         </select>
 
         <br>
         <br>
 
         <label>Dê uma nota:</label>
-        <select name="option" id="nota">
+        <select name="option" id="valor">
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -47,11 +47,13 @@
             <option value="5">5</option>
         </select>
 
-        <button id="darNota" onclick="avaliarFilme()">Enviar</button>
+        <!-- <button id="darNota" onclick="avaliarFilme()">Enviar</button> -->
+        <input type="submit" id="darNota">
 
     </div>
 
     <p>Média de avaliações do filme:</p>
+    
     <div id="filmeEscolhido"></div>
 
     <div id="media"></div>
@@ -61,10 +63,40 @@
         let filmes = ["Megan", "Sorria", "O homem invisível", "Invocação do mal", "It"];
         let notas = [];
 
-        function avaliarFilme(filme, nota) {
-            
+        function darNota(filme, nota){
 
-        }
+            let option = document.getElementById("option").value;
+            let valor = document.getElementById("valor").value;
+
+            let indexFilme = filmes.indexOf(filme);
+
+            if (indexFilme === -1) {
+            console.log(`Filme não encontrado: ${filme}`);
+            return;
+            }
+
+            notas[indexFilme] = nota;
+
+        };
+
+        // let selecionarFilme = document.getElementById("selecionarFilme");
+
+        // let notas = [];
+
+        // selecionarFilme.addEventListener('submit', function(event){
+        //     event.preventDefault();
+
+        //     let filme = document.getElementById("filmes").value;
+        //     let nota = document.getElementById("valor").value;
+
+        //     let notaComp = [filme, nota];
+        //     notas.push(notaComp);
+
+        //     selecionarFilme.reset();
+
+        //     document.getElementById("filmeEscolhido").innerHTML = filme;
+            
+        // });
 
     </script>
 
