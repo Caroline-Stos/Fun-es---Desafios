@@ -26,79 +26,95 @@
 
     <div id="selecionarFilme">
 
-        <select name="options" id="option">
-            <option value="Megan">Megan</option>
-            <option value="Sorria">Sorria</option>
-            <option value="O homem invisível">O homem invisível</option>
-            <option value="Invocação do mal">Invocação do mal</option>
-            <option value="It">It</option>
+        <select name="options" id="filme">
+            <option value="0">Selecione</option>
+            <option value="1">Megan</option>
+            <option value="2">Sorria</option>
+            <option value="3">O homem invisível</option>
+            <option value="4">Invocação do mal</option>
+            <option value="5">It</option>
         </select>
 
         <br>
         <br>
 
-        <label>Dê uma nota:</label>
-        <select name="option" id="valor">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
+        <label>Dê uma nota de 0 a 10:</label>
+        <input type="number" id="nota">
 
-        <!-- <button id="darNota" onclick="avaliarFilme()">Enviar</button> -->
-        <input type="submit" id="darNota">
+        <!-- botao dar nota -->
+        <input type="submit" id="avaliar" onclick="darNota()">
 
     </div>
 
-    <p>Média de avaliações do filme:</p>
-    
-    <div id="filmeEscolhido"></div>
+    <p>Ver média de avaliações do filme:</p>
+
+    <select name="options" id="media_filme">
+        <option value="0">Selecione</option>
+        <option value="1">Megan</option>
+        <option value="2">Sorria</option>
+        <option value="3">O homem invisível</option>
+        <option value="4">Invocação do mal</option>
+        <option value="5">It</option>
+    </select>
+
+    <input type="submit" id="verMedia" onclick="calcularMedia()">
+
+    <br><br>
 
     <div id="media"></div>
 
     <script>
 
         let filmes = ["Megan", "Sorria", "O homem invisível", "Invocação do mal", "It"];
-        let notas = [];
+        let notas = [[], [], [], [], []];
 
-        
+        function darNota(filme, nota) {
 
-        function darNota(filme, nota){
+            filme = document.getElementById("filme").value;
 
-            let option = document.getElementById("option").value;
-            let valor = document.getElementById("valor").value;
-
-            let indexFilme = filmes.indexOf(filme);
-
-            if (indexFilme === -1) {
-            console.log(`Filme não encontrado: ${filme}`);
-            return;
+            if (filme >= 1 && filme <= 5) {
+                nota = parseFloat(document.getElementById("nota").value);
+                if (nota >= 0 && nota <= 10) {
+                    notas[filme - 1].push(nota);
+                    alert(`O filme ${filmes[filme - 1]} recebeu nota ${nota}.`);
+                    document.getElementById("filme").value = 0;
+                    document.getElementById("nota").value = "";
+                } else {
+                    alert("Insirra uma nota válida de 0 a 10!");
+                };
+            } else {
+                alert("Escolha um filme válido!")
             }
-
-            notas[indexFilme] = nota;
-
         };
 
-        // let selecionarFilme = document.getElementById("selecionarFilme");
+        function calcularMedia(filme) {
 
-        // let notas = [];
+            filme = document.getElementById("media_filme").value;
 
-        // selecionarFilme.addEventListener('submit', function(event){
-        //     event.preventDefault();
+            if (filme >= 1 && filme <= 5) {
 
-        //     let filme = document.getElementById("filmes").value;
-        //     let nota = document.getElementById("valor").value;
+                let notasFilme = notas[filme - 1];
 
-        //     let notaComp = [filme, nota];
-        //     notas.push(notaComp);
+                if (notasFilme.length > 0) {
 
-        //     selecionarFilme.reset();
+                    let soma = 0;
 
-        //     document.getElementById("filmeEscolhido").innerHTML = filme;
-            
-        // });
+                    for (let i = 0; i < notasFilme.length; i++) {
+                        soma += notasFilme[i];
+                    };
+
+                    document.getElementById("media_filme").value = 0;
+
+                    let media = (soma / notasFilme.length).toFixed(2);
+                    document.getElementById("media").innerHTML = `A média do filme ${filmes[filme - 1]} é ${media}`;
+                } else{
+                    document.getElementById("media_filme").value = 0;
+                    alert("Não há notas para este filme ainda!");
+                };
+            } else{
+                alert("Filme inválido!");
+            };
+        };
 
     </script>
 
